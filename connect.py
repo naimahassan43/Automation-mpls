@@ -17,12 +17,17 @@ connection = ConnectHandler(**cisco_device)
 #find prompt to know mode
 prompt = connection.find_prompt()
 if '>' in prompt:
-    connection.enable()
-
+    connection.enable()   #entering User exec mode to Privileged mode
 
 output = connection.send_command('sh ip int br')
 print(output)
 
+if not connection.check_config_mode():
+    connection.config_mode()    #entering Privileged mode to Global configuration mode
+
+print(connection.check_config_mode())
+
+connection.send_command('username admin1 secret cisco')
 
 print('Closing connection')
 connection.disconnect()
