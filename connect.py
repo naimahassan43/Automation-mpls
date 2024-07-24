@@ -27,7 +27,10 @@ if not connection.check_config_mode():
 
 print(connection.check_config_mode())
 
-connection.send_command('username admin1 secret cisco')
+#connection.send_command('username admin1 secret cisco')
+
+
+connection.exit_config_mode()
 
 print('Closing connection')
 connection.disconnect()
