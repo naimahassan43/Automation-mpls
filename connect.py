@@ -13,6 +13,13 @@ cisco_device = {
 }
 
 connection = ConnectHandler(**cisco_device)  
+
+#find prompt to know mode
+prompt = connection.find_prompt()
+if '>' in prompt:
+    connection.enable()
+
+
 output = connection.send_command('sh ip int br')
 print(output)
 
